@@ -186,3 +186,97 @@ main {
     font-size: 18px;
   }
 }
+
+/* ===== ERGEBNIS-ANZEIGE ===== */
+#result-count {
+    text-align: center;
+    font-size: 32px;
+    color: #FDFF81;
+    -webkit-text-stroke: 0.5px #0C0E25;
+    margin: 24px 0;
+    font-weight: bold;
+}
+
+/* ===== VISUALISIERUNGS-CONTAINER ===== */
+#asteroid-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 600px;
+    margin: 32px auto;
+    background: rgba(12, 14, 37, 0.3);
+    border: 2px solid #FDFF81;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* ===== ERDE ===== */
+#earth {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at 30% 30%, #4A90E2, #1E3A5F, #0A1929);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 30px rgba(74, 144, 226, 0.6),
+        0 0 60px rgba(74, 144, 226, 0.4),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+
+
+/* ===== ASTEROIDEN ===== */
+.asteroid {
+    position: absolute;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Farbklassen für Distanz */
+.asteroid.close {
+    background: #2ECC71;
+    box-shadow: 
+        0 0 10px rgba(46, 204, 113, 0.8),
+        0 0 20px rgba(46, 204, 113, 0.4);
+}
+
+.asteroid.medium {
+    background: #F39C12;
+    box-shadow: 
+        0 0 10px rgba(243, 156, 18, 0.8),
+        0 0 20px rgba(243, 156, 18, 0.4);
+}
+
+.asteroid.far {
+    background: #95A5A6;
+    box-shadow: 
+        0 0 10px rgba(149, 165, 166, 0.6),
+        0 0 20px rgba(149, 165, 166, 0.3);
+}
+
+/* Hover-Effekt */
+.asteroid:hover {
+    transform: scale(1.5);
+    box-shadow: 
+        0 0 20px currentColor,
+        0 0 40px currentColor;
+    z-index: 100;
+}
