@@ -39,20 +39,32 @@
     <!-- LEFT: Date -->
     <div class="field">
       <label for="datepicker">pick date:</label>
-      <input type="date" id="datepicker" name="datepicker" />
+      <input type="date" id="datepicker" min="2025-10-06">
     </div>
 
     
     <!-- RIGHT: Distance -->
     <div class="field">
       <label for="distancepicker">distance:</label>
-      <select id="distancepicker" disabled>
-        <option>select</option>
-        <option value="all">all</option>
-        <option value="weit">&lt; 100 mio. km</option>
-        <option value="nah">&lt; 50 mio. km</option>
-      </select>
+    <select id="distancepicker" disabled>
+    <option value="select">Bitte wählen</option>
+    <option value="all">Alle</option>
+    <option value="medium">&lt; 100 Mio. km</option>
+    <option value="close">&lt; 50 Mio. km</option>
+</select>
     </div>
+
+
+    <!-- Ergebnis-Anzeige -->
+<div id="result-count"></div>
+
+<!-- Visualisierungs-Container -->
+<div id="asteroid-container">
+    <div id="earth"></div>
+    <!-- Asteroiden werden hier via JavaScript eingefügt -->
+</div>
+
+
 
     <!-- CENTER BELOW: Star button -->
     <button id="go-btn" class="star-btn" title="Go!">Go!</button>
