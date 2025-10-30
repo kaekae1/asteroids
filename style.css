@@ -1,0 +1,188 @@
+/* ===== GENERAL STYLING ===== */
+@font-face {
+  font-family: 'Copal Std';
+  src: url('fonts/Copal Std Solid.otf'),
+       url('fonts/Copal Std Outline.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Copal Std', sans-serif;
+  color: #0C0E25;
+  background-image: url('img/galaxy2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+header h1 {
+  font-size: 150px;
+  margin: 0;
+  -webkit-text-stroke: 1px #FDFF81;
+}
+
+header p {
+  margin-top: 8px;
+  font-size: 60pt;
+  color: #0C0E25;
+  -webkit-text-stroke: 0.5px #FDFF81;
+}
+/* ===== EARTH IMAGE ===== */
+.earth-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+  transform: translateY(-60%);
+  /*pointer-events: none;*/
+}
+
+
+/* ===== MAIN SECTION ===== */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 250px;
+}
+
+/* ===== SEARCH SECTION ===== */
+#search {
+  padding: 24px 32px;
+  border-radius: 12px;
+  text-align: left;
+  width: min(100%, 1100px);
+  margin: 0 auto;
+}
+
+#search label {
+  font-size: 35px;
+  margin-right: 8px;
+  color: #FDFF81;
+}
+
+.search-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* date | distance */
+  column-gap: 650px;
+  align-items: end;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: #FDFF81;
+}
+
+.field input[type="date"],
+.field select {
+  width: 100%;
+  padding: 10px 11px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-family: 'Copal Std Outline';
+  font-size: 25px;
+  background: #7E0606;
+  color: #FDFF81;
+}
+
+#datepicker {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-family: 'Copal Std Outline';
+}
+
+#go-btn {
+  margin-left: 13px;
+  padding: 8px 19px;
+  border: none;
+  border-radius: 6px;
+  background: #FDFF81;
+  color: #7E0606;
+  font-family: 'Copal Std', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#go-btn:hover {
+  background: #5b0303;
+  font-family: 'Copal Std', sans-serif;
+  color: #FDFF81;
+}
+
+/* ===== STAR BUTTON ===== */
+.star-btn {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 8px;
+
+  --size: 110px;
+  width: var(--size);
+  height: var(--size);
+  border: none;
+  background: #7E0606;
+  color: #FDFF81;
+  font-family: 'Copal Std Outline', sans-serif;
+  font-size: 21px;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.3s, box-shadow 0.3s;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(253, 255, 129, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.star-btn:hover {
+  background: #5b0303;
+  box-shadow: 0 0 25px rgba(253, 255, 129, 0.8);
+}
+
+
+
+/* ===== Responsive: stack on small screens ===== */
+@media (max-width: 720px) {
+  .search-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #go-btn {
+    width: 100%;
+  }
+
+  .star-btn {
+    --size: 60px;
+    font-size: 18px;
+  }
+}

@@ -1,1 +1,72 @@
-<h1>hallo</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asteroid Tracker</title>
+
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    @font-face {
+      font-family: 'Copal Std';
+      src: url('fonts/CopalStd.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'Copal Std';
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>ASTEROIDS</h1>
+    <p>near earth</p>
+  </header>
+
+  <!-- ===== Earth image ===== -->
+  <img src="img/earth_from_space_t.png" alt="Earth from space" class="earth-overlay" />
+
+  <main>
+    <section id="search">
+  <div class="search-grid">
+
+
+    <!-- LEFT: Date -->
+    <div class="field">
+      <label for="datepicker">pick date:</label>
+      <input type="date" id="datepicker" name="datepicker" />
+    </div>
+
+    
+    <!-- RIGHT: Distance -->
+    <div class="field">
+      <label for="distancepicker">distance:</label>
+      <select id="distancepicker" disabled>
+        <option>select</option>
+        <option value="all">all</option>
+        <option value="weit">&lt; 100 mio. km</option>
+        <option value="nah">&lt; 50 mio. km</option>
+      </select>
+    </div>
+
+    <!-- CENTER BELOW: Star button -->
+    <button id="go-btn" class="star-btn" title="Go!">Go!</button>
+  </div>
+</section>
+
+
+  </main>
+
+  <!-- ===== JavaScript (as module) ===== -->
+  <script type="module" src="script.js"></script>
+  
+  
+  
+
+</body>
+</html>
