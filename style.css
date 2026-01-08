@@ -130,7 +130,6 @@ main {
 
   text-align: center;
   font-size: 32px;
-  color: #fdff81;
   -webkit-text-stroke: 0.5px #0c0e25;
   margin: 24px 0;
   font-weight: bold;
@@ -148,7 +147,7 @@ main {
   justify-self: center;
   margin-top: 8px;
 
-  --size: 110px;
+  --size: 190px;
   width: var(--size);
   height: var(--size);
   border: none;
@@ -199,14 +198,9 @@ main {
   border-radius: 6px;
 
   /* yellow face */
-  background: #f3f08b;
-
-  /* dark outline + red inner stroke 느낌 */
-  border: 3px solid #2b1a10;
-  box-shadow: 0 6px 0 #2b1a10,
-    /* hard drop shadow (3D) */ 0 0 0 3px #7b1d1d inset; /* inner red border */
-
-  color: #7b1d1d;
+  background: #5b0303;
+  border: none;
+  color: #f3f08b;
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
@@ -215,12 +209,10 @@ main {
 
 /* Hover / Active (pressed) */
 .ui-btn:hover {
-  filter: brightness(1.05);
+  background: #f3f08b;
+  color: #5b0303;
 }
 
-.ui-btn:active {
-  box-shadow: 0 2px 0 #2b1a10, 0 0 0 3px #7b1d1d inset;
-}
 
 /* LEFT button: centered vertically left */
 .ui-left {
@@ -245,8 +237,6 @@ main {
   background: #7b1d1d;
   color: #f3f08b;
 
-  border: 3px solid #2b1a10;
-  box-shadow: 0 6px 0 #2b1a10, 0 0 0 3px #c7a23a inset; /* gold-ish inner stroke */
 }
 
 /* optional: responsive sizing */
@@ -289,7 +279,7 @@ main {
   font-weight: bold;
 
   .bigger {
-    font-size: 48px;
+    font-size: 250px;
   }
 }
 
@@ -312,23 +302,6 @@ main {
     opacity: 1;
     transform: scale(1);
   }
-}
-
-/* Farbklassen für Distanz */
-.asteroid.close {
-  background: #2ecc71;
-  box-shadow: 0 0 10px rgba(46, 204, 113, 0.8), 0 0 20px rgba(46, 204, 113, 0.4);
-}
-
-.asteroid.medium {
-  background: #f39c12;
-  box-shadow: 0 0 10px rgba(243, 156, 18, 0.8), 0 0 20px rgba(243, 156, 18, 0.4);
-}
-
-.asteroid.far {
-  background: #95a5a6;
-  box-shadow: 0 0 10px rgba(149, 165, 166, 0.6),
-    0 0 20px rgba(149, 165, 166, 0.3);
 }
 
 /* Hover-Effekt */

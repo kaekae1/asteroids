@@ -60,8 +60,8 @@ function localizeDate(dateString) {
 
 function localizeDistance(distance) {
   if (distance == 'all') return 'Alle Entfernungen'
-  else if (distance == 'medium') return 'Weniger als 100 Mio. km'
-  else if (distance == 'close') return 'Weniger als 50 Mio. km'
+  else if (distance == 'medium') return 'less than 100 Mio. km'
+  else if (distance == 'close') return 'less than 50 Mio. km'
 }
 
 async function getByDateAndDistance(date, distance) {
@@ -90,7 +90,7 @@ async function getByDateAndDistance(date, distance) {
 
     resultCount.innerHTML = `
         <span class="bigger">${data.length}</span>
-        Asteroiden gefunden am ${localizeDate(date)} bei ${localizeDistance(
+        asteroids said hi on ${localizeDate(date)} by ${localizeDistance(
       distance,
     )}`
   } catch (error) {
