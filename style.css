@@ -197,35 +197,6 @@ main {
     font-weight: bold;
 }
 
-/* ===== VISUALISIERUNGS-CONTAINER ===== */
-#asteroid-container {
-    position: relative;
-    width: 90%;
-    max-width: 1200px;
-    height: 600px;
-    margin: 32px auto;
-    background: rgba(12, 14, 37, 0.3);
-    border: 2px solid #FDFF81;
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-/* ===== ERDE ===== */
-#earth {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle at 30% 30%, #4A90E2, #1E3A5F, #0A1929);
-    border-radius: 50%;
-    box-shadow: 
-        0 0 30px rgba(74, 144, 226, 0.6),
-        0 0 60px rgba(74, 144, 226, 0.4),
-        inset 0 0 20px rgba(0, 0, 0, 0.5);
-    z-index: 10;
-}
 
 
 
