@@ -49,6 +49,7 @@ header p {
   /*pointer-events: none;*/
 }
 
+
 #results .earth-overlay {
   width: 800px;
   left: 50%;
@@ -276,9 +277,7 @@ main {
   text-align: center;
   font-size: 32px;
   color: #fdff81;
-  -webkit-text-stroke: 0.5px #0c0e25;
   margin: 24px 0;
-  font-weight: bold;
 
   .bigger {
     font-size: 250px;
