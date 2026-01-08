@@ -1,8 +1,7 @@
 /* ===== GENERAL STYLING ===== */
 @font-face {
   font-family: 'Copal Std';
-  src: url('fonts/Copal Std Solid.otf'),
-       url('fonts/Copal Std Outline.otf');
+  src: url('fonts/Copal Std Solid.otf'), url('fonts/Copal Std Outline.otf');
   font-weight: normal;
   font-style: normal;
 }
@@ -11,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Copal Std', sans-serif;
-  color: #0C0E25;
+  color: #0c0e25;
   background-image: url('img/galaxy2.jpg');
   background-size: cover;
   background-position: center;
@@ -29,14 +28,14 @@ header {
 header h1 {
   font-size: 150px;
   margin: 0;
-  -webkit-text-stroke: 1px #FDFF81;
+  -webkit-text-stroke: 1px #fdff81;
 }
 
 header p {
   margin-top: 8px;
   font-size: 60pt;
-  color: #0C0E25;
-  -webkit-text-stroke: 0.5px #FDFF81;
+  color: #0c0e25;
+  -webkit-text-stroke: 0.5px #fdff81;
 }
 /* ===== EARTH IMAGE ===== */
 .earth-overlay {
@@ -50,6 +49,12 @@ header p {
   /*pointer-events: none;*/
 }
 
+#results .earth-overlay {
+  width: 800px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
 /* ===== MAIN SECTION ===== */
 main {
@@ -61,17 +66,19 @@ main {
 
 /* ===== SEARCH SECTION ===== */
 #search {
-  padding: 24px 32px;
   border-radius: 12px;
   text-align: left;
   width: min(100%, 1100px);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #search label {
   font-size: 35px;
   margin-right: 8px;
-  color: #FDFF81;
+  color: #fdff81;
 }
 
 .search-grid {
@@ -85,10 +92,10 @@ main {
   display: block;
   margin-bottom: 6px;
   font-size: 16px;
-  color: #FDFF81;
+  color: #fdff81;
 }
 
-.field input[type="date"],
+.field input[type='date'],
 .field select {
   width: 100%;
   padding: 10px 11px;
@@ -97,8 +104,8 @@ main {
   outline: none;
   font-family: 'Copal Std Outline';
   font-size: 25px;
-  background: #7E0606;
-  color: #FDFF81;
+  background: #7e0606;
+  color: #fdff81;
 }
 
 #datepicker {
@@ -114,18 +121,25 @@ main {
   padding: 8px 19px;
   border: none;
   border-radius: 6px;
-  background: #FDFF81;
-  color: #7E0606;
+  background: #fdff81;
+  color: #7e0606;
   font-family: 'Copal Std', sans-serif;
   font-size: 16px;
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
+
+  text-align: center;
+  font-size: 32px;
+  color: #fdff81;
+  -webkit-text-stroke: 0.5px #0c0e25;
+  margin: 24px 0;
+  font-weight: bold;
 }
 
 #go-btn:hover {
   background: #5b0303;
   font-family: 'Copal Std', sans-serif;
-  color: #FDFF81;
+  color: #fdff81;
 }
 
 /* ===== STAR BUTTON ===== */
@@ -138,8 +152,8 @@ main {
   width: var(--size);
   height: var(--size);
   border: none;
-  background: #7E0606;
-  color: #FDFF81;
+  background: #7e0606;
+  color: #fdff81;
   font-family: 'Copal Std Outline', sans-serif;
   font-size: 21px;
   cursor: pointer;
@@ -169,7 +183,85 @@ main {
   box-shadow: 0 0 25px rgba(253, 255, 129, 0.8);
 }
 
+#results {
+  display: none;
+}
 
+.ui-btn {
+  position: fixed;
+  z-index: 9999;
+
+  font-family: 'Impact', 'Arial Black', system-ui, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  padding: 10px 16px;
+  border-radius: 6px;
+
+  /* yellow face */
+  background: #f3f08b;
+
+  /* dark outline + red inner stroke 느낌 */
+  border: 3px solid #2b1a10;
+  box-shadow: 0 6px 0 #2b1a10,
+    /* hard drop shadow (3D) */ 0 0 0 3px #7b1d1d inset; /* inner red border */
+
+  color: #7b1d1d;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hover / Active (pressed) */
+.ui-btn:hover {
+  filter: brightness(1.05);
+}
+
+.ui-btn:active {
+  box-shadow: 0 2px 0 #2b1a10, 0 0 0 3px #7b1d1d inset;
+}
+
+/* LEFT button: centered vertically left */
+.ui-left {
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* RIGHT button: centered vertically right */
+.ui-right {
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* RESET button: bottom center, red style like screenshot */
+.ui-reset {
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+
+  background: #7b1d1d;
+  color: #f3f08b;
+
+  border: 3px solid #2b1a10;
+  box-shadow: 0 6px 0 #2b1a10, 0 0 0 3px #c7a23a inset; /* gold-ish inner stroke */
+}
+
+/* optional: responsive sizing */
+@media (max-width: 700px) {
+  .ui-btn {
+    font-size: 14px;
+    padding: 9px 12px;
+  }
+  .ui-left {
+    left: 12px;
+  }
+  .ui-right {
+    right: 12px;
+  }
+}
 
 /* ===== Responsive: stack on small screens ===== */
 @media (max-width: 720px) {
@@ -189,63 +281,59 @@ main {
 
 /* ===== ERGEBNIS-ANZEIGE ===== */
 #result-count {
-    text-align: center;
-    font-size: 32px;
-    color: #FDFF81;
-    -webkit-text-stroke: 0.5px #0C0E25;
-    margin: 24px 0;
-    font-weight: bold;
-}
+  text-align: center;
+  font-size: 32px;
+  color: #fdff81;
+  -webkit-text-stroke: 0.5px #0c0e25;
+  margin: 24px 0;
+  font-weight: bold;
 
+  .bigger {
+    font-size: 48px;
+  }
+}
 
 /* ===== ASTEROIDEN ===== */
 .asteroid {
-    position: absolute;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    animation: fadeIn 0.5s ease-in-out;
+  position: absolute;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 /* Fade-in Animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.5);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Farbklassen für Distanz */
 .asteroid.close {
-    background: #2ECC71;
-    box-shadow: 
-        0 0 10px rgba(46, 204, 113, 0.8),
-        0 0 20px rgba(46, 204, 113, 0.4);
+  background: #2ecc71;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.8), 0 0 20px rgba(46, 204, 113, 0.4);
 }
 
 .asteroid.medium {
-    background: #F39C12;
-    box-shadow: 
-        0 0 10px rgba(243, 156, 18, 0.8),
-        0 0 20px rgba(243, 156, 18, 0.4);
+  background: #f39c12;
+  box-shadow: 0 0 10px rgba(243, 156, 18, 0.8), 0 0 20px rgba(243, 156, 18, 0.4);
 }
 
 .asteroid.far {
-    background: #95A5A6;
-    box-shadow: 
-        0 0 10px rgba(149, 165, 166, 0.6),
-        0 0 20px rgba(149, 165, 166, 0.3);
+  background: #95a5a6;
+  box-shadow: 0 0 10px rgba(149, 165, 166, 0.6),
+    0 0 20px rgba(149, 165, 166, 0.3);
 }
 
 /* Hover-Effekt */
 .asteroid:hover {
-    transform: scale(1.5);
-    box-shadow: 
-        0 0 20px currentColor,
-        0 0 40px currentColor;
-    z-index: 100;
+  transform: scale(1.5);
+  box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+  z-index: 100;
 }

@@ -1,77 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Asteroid Tracker</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https://asteroids.kaekae.ch/; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://asteroids.kaekae.ch/;"
+    />
+    <title>Asteroid Tracker</title>
 
-  <!-- ===== CSS ===== -->
-  <link rel="stylesheet" href="style.css" />
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="style.css" />
 
-  <style>
-    @font-face {
-      font-family: 'Copal Std';
-      src: url('fonts/CopalStd.otf') format('opentype');
-      font-weight: normal;
-      font-style: normal;
-    }
+    <style>
+      @font-face {
+        font-family: 'Copal Std';
+        src: url('fonts/Copal\ Std\ Solid.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+      }
 
-    body {
-      font-family: 'Copal Std';
-    }
-  </style>
-</head>
+      body {
+        font-family: 'Copal Std';
+      }
+    </style>
+  </head>
 
-<body>
-  <header>
-    <h1>ASTEROIDS</h1>
-    <p>near earth</p>
-  </header>
+  <body>
+    <main>
+      <section id="search">
+        <header>
+          <h1>ASTEROIDS</h1>
+          <p>near earth</p>
+        </header>
 
-  <!-- ===== Earth image ===== -->
-  <img src="img/earth_from_space_t.png" alt="Earth from space" class="earth-overlay" />
+        <!-- ===== Earth image ===== -->
+        <img
+          src="img/earth_from_space_t.png"
+          alt="Earth from space"
+          class="earth-overlay"
+        />
 
-  <main>
-    <section id="search">
-  <div class="search-grid">
+        <div class="search-grid">
+          <!-- LEFT: Date -->
+          <div class="field">
+            <label for="datepicker">pick date:</label>
+            <input
+              type="date"
+              id="datepicker"
+              min="2025-10-06"
+              value="2026-01-07"
+            />
+          </div>
 
+          <!-- RIGHT: Distance -->
+          <div class="field">
+            <label for="distancepicker">distance:</label>
+            <select id="distancepicker">
+              <option value="select">select</option>
+              <option value="all">all</option>
+              <option value="medium">&lt; 100 Mio. km</option>
+              <option value="close">&lt; 50 Mio. km</option>
+            </select>
+          </div>
 
-    <!-- LEFT: Date -->
-    <div class="field">
-      <label for="datepicker">pick date:</label>
-      <input type="date" id="datepicker" min="2025-10-06">
-    </div>
+          <!-- CENTER BELOW: Star button -->
+          <button id="go-btn" class="star-btn" title="Go!">Go!</button>
+        </div>
+      </section>
+    </main>
 
-    
-    <!-- RIGHT: Distance -->
-    <div class="field">
-      <label for="distancepicker">distance:</label>
-    <select id="distancepicker" disabled>
-    <option value="select">select</option>
-    <option value="all">all</option>
-    <option value="medium">&lt; 100 Mio. km</option>
-    <option value="close">&lt; 50 Mio. km</option>
-</select>
-    </div>
+    <!-- ===== ERGEBNIS-ANZEIGE ===== -->
 
+    <section id="results">
+      <div class="results-container">
+        <!-- ===== Earth image ===== -->
+        <img
+          src="img/earth_from_space_t.png"
+          alt="Earth from space"
+          class="earth-overlay"
+        />
+        <!-- CENTER BELOW: Star button -->
+        <button id="rst-btn" class="ui-btn ui-reset" title="Back!">
+          Back!
+        </button>
+        <button id="left-btn" class="ui-btn ui-left" title="Left!">
+          Left!
+        </button>
+        <button id="right-btn" class="ui-btn ui-right" title="Right!">
+          Right!
+        </button>
+      </div>
 
-    <!-- Ergebnis-Anzeige -->
-<div id="result-count"></div>
+      <!-- Ergebnis-Anzeige -->
+      <div id="result-count"></div>
+    </section>
 
-
-    <!-- CENTER BELOW: Star button -->
-    <button id="go-btn" class="star-btn" title="Go!">Go!</button>
-  </div>
-</section>
-
-
-  </main>
-
-  <!-- ===== JavaScript (as module) ===== -->
-  <script type="module" src="script.js"></script>
-  
-  
-  
-
-</body>
+    <!-- ===== JavaScript (as module) ===== -->
+    <script type="module" src="script.js"></script>
+  </body>
 </html>

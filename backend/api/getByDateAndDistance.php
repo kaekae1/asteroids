@@ -1,6 +1,11 @@
 <?php
 require_once '../config.php';
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+ 
+
 header('Content-Type: application/json');
 
 try {
@@ -45,6 +50,12 @@ try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['date' => $date]);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (count($results) === 0) {
+        http_response_code(404);
+        echo json_encode(['error' => 'Keine Asteroiden gefunden fuer das gegebene Datum und Distanz']);
+        exit;
+    }
 
     echo json_encode($results);
 
