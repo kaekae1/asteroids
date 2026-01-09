@@ -1,101 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self' https://asteroids.kaekae.ch/; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://asteroids.kaekae.ch/;"
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self' https://asteroids.kaekae.ch/; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://asteroids.kaekae.ch/;"
     />
     <title>Asteroid Tracker</title>
 
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css"/>
 
     <style>
-      @font-face {
-        font-family: 'Copal Std';
-        src: url('fonts/Copal\ Std\ Solid.otf') format('opentype');
-        font-weight: normal;
-        font-style: normal;
-      }
+        @font-face {
+            font-family: 'Copal Std';
+            src: url('fonts/Copal\ Std\ Solid.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
 
-      body {
-        font-family: 'Copal Std';
-      }
+        body {
+            font-family: 'Copal Std';
+        }
     </style>
-  </head>
+</head>
 
-  <body>
-    <main>
-      <section id="search">
+<body>
+<main>
+    <section id="search">
         <header>
-          <h1>ASTEROIDS</h1>
-          <p>near earth</p>
+            <h1>ASTEROIDS</h1>
+            <p>near earth</p>
         </header>
 
         <!-- ===== Earth image ===== -->
         <img
-          src="img/earth_from_space_t.png"
-          alt="Earth from space"
-          class="earth-overlay"
+                src="img/earth_from_space_t.png"
+                alt="Earth from space"
+                class="earth-overlay"
         />
 
         <div class="search-grid">
-          <!-- LEFT: Date -->
-          <div class="field">
-            <label for="datepicker">pick date:</label>
-            <input
-              type="date"
-              id="datepicker"
-              min="2025-10-06"
-              value="2026-01-07"
-            />
-          </div>
+            <!-- LEFT: Date -->
+            <div class="field">
+                <label for="datepicker">pick date:</label>
+                <input
+                        type="date"
+                        id="datepicker"
+                        min="2025-10-06"
+                        value="2026-01-07"
+                />
+            </div>
 
-          <!-- RIGHT: Distance -->
-          <div class="field">
-            <label for="distancepicker">distance:</label>
-            <select id="distancepicker">
-              <option value="select">select</option>
-              <option value="all">all</option>
-              <option value="medium">&lt; 100 Mio. km</option>
-              <option value="close">&lt; 50 Mio. km</option>
-            </select>
-          </div>
+            <!-- RIGHT: Distance -->
+            <div class="field">
+                <label for="distancepicker">distance:</label>
+                <select id="distancepicker" required>
+                    <option value="" disabled selected hidden>select</option>
+                    <option value="all">all</option>
+                    <option value="close">&lt; 50 Mio. km</option>
+                </select>
+            </div>
 
-          <!-- CENTER BELOW: Star button -->
-          <button id="go-btn" class="star-btn" title="Go!">Go!</button>
+            <!-- CENTER BELOW: Star button -->
+            <button id="go-btn" class="star-btn" title="Go!">Go!</button>
         </div>
-      </section>
-    </main>
+    </section>
+</main>
 
-    <!-- ===== ERGEBNIS-ANZEIGE ===== -->
+<!-- ===== ERGEBNIS-ANZEIGE ===== -->
 
-    <section id="results">
-      <div class="results-container">
+<section id="results">
+    <div class="results-container">
         <!-- ===== Earth image ===== -->
         <img
-          src="img/earth_from_space_t.png"
-          alt="Earth from space"
-          class="earth-overlay"
+                src="img/earth_from_space_t.png"
+                alt="Earth from space"
+                class="earth-overlay"
         />
         <!-- CENTER BELOW: Star button -->
         <button id="rst-btn" class="ui-btn ui-reset" title="Back!">
-          reset search
+            reset search
         </button>
-        <button id="left-btn" class="ui-btn ui-left" title="Left!">
-          <<
-        <button id="right-btn" class="ui-btn ui-right" title="Right!">
-          >>
-        </button>
-      </div>
+        <button id="left-btn" class="ui-btn ui-left" title="Left!">&lt;&lt;</button>
+        <button id="right-btn" class="ui-btn ui-right" title="Right!">&gt;&gt;</button>
 
-      <!-- Ergebnis-Anzeige -->
-      <div id="result-count"></div>
-    </section>
 
-    <!-- ===== JavaScript (as module) ===== -->
-    <script type="module" src="script.js"></script>
-  </body>
+        <!-- Ergebnis-Anzeige -->
+    <div id="result-count"></div>
+</section>
+
+<!-- ===== JavaScript (as module) ===== -->
+<script type="module" src="script.js"></script>
+</body>
 </html>

@@ -2,8 +2,7 @@
 ____________________________________________________________________________________________________
 Der Asteroids-Tracker ist eine Webanwendung, die angibt, wie viele Asteroiden am gewählten Datum an der Erde vorbeigeflitzt sind und diese visuell darstellt. 
 "Asteroids Near Earth", doch wie nah ist nah? Bereits mehrere Millionen Kilometer wird in diesem Kontext als nah bezeichnet, was für den Menschen fast unvorstellbar ist. 
-Nutzer:innen können dabei die Distanz zur Erde durch ein Dropdown wählen: Entweder werden alle an diesem Tag registrierten Asteroiden angezeigt oder nur diejenigen, 
-die der Erde bis auf weniger als 100 Millionen Kilometer nahe gekommen sind.
+Nutzer:innen können dabei die Distanz zur Erde durch ein Dropdown wählen: Entweder werden alle an diesem Tag registrierten Asteroiden angezeigt oder nur diejenigen, die der Erde bis auf weniger als 50 Millionen Kilometer nahe gekommen sind.
 
 
 

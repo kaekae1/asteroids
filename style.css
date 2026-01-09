@@ -6,6 +6,10 @@
   font-style: normal;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -16,28 +20,40 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* ===== HEADER ===== */
 header {
   text-align: center;
-  padding: 32px 16px;
+  padding-top: 80px;
+  padding-bottom: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
-header h1 {
-  font-size: 120px;
-  margin: -120px;
-  margin-bottom: 10px;
+header{
+  text-align:center;
+  padding-top: clamp(24px, 6vh, 80px);
+  padding-bottom: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+header h1{
+  font-size: clamp(48px, 10vw, 120px);
+  margin:0 0 10px 0;
   -webkit-text-stroke: 1.5px #fdff81;
 }
 
-header p {
+header p{
   margin-top: 10px;
-  font-size: 60pt;
-  color: #0c0e25;
+  font-size: clamp(24px, 6vw, 72px);
+  color:#0c0e25;
   -webkit-text-stroke: 1.5px #fdff81;
 }
+
 /* ===== EARTH IMAGE ===== */
 .earth-overlay {
   position: fixed;
@@ -51,20 +67,26 @@ header p {
 }
 
 
-#results .earth-overlay {
-  width: 800px;
+#results .earth-overlay{
+  width: min(800px, 85vw);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
+
 /* ===== MAIN SECTION ===== */
 main {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 250px;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
+
 
 /* ===== SEARCH SECTION ===== */
 #search {
@@ -84,12 +106,26 @@ main {
   letter-spacing: 1.5px;
 }
 
-.search-grid {
+.search-grid{
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* date | distance */
-  column-gap: 650px;
+  grid-template-columns: minmax(220px, 1fr) minmax(220px, 1fr);
+  gap: clamp(16px, 4vw, 48px);
   align-items: end;
+  justify-items: stretch;
 }
+
+.field{
+  width: 100%;
+}
+
+@media (max-width: 820px){
+  .search-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+
 
 .field label {
   display: block;
@@ -151,14 +187,14 @@ main {
   justify-self: center;
   margin-top: 8px;
 
-  --size: 190px;
+  --size: clamp(90px, 18vw, 190px);
   width: var(--size);
   height: var(--size);
   border: none;
   background: #7e0606;
   color: #fdff81;
   font-family: 'Copal Std Outline', sans-serif;
-  font-size: 21px;
+  font-size: clamp(14px, 2.2vw, 21px);
   cursor: pointer;
   transition: transform 0.25s ease, background 0.3s, box-shadow 0.3s;
   clip-path: polygon(
@@ -188,7 +224,14 @@ main {
 
 #results {
   display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 10;
 }
+
 
 .ui-btn {
   position: fixed;
@@ -233,15 +276,21 @@ main {
 }
 
 /* RESET button: bottom center, red style like screenshot */
-.ui-reset {
-  left: 50%;
-  bottom: 26px;
-  transform: translateX(-50%);
+.ui-reset{
+  left:50%;
+  bottom:26px;
+  transform:translateX(-50%);
 
-  background: #5b0303;
-  color: #f3f08b;
+  background:#5b0303;      /* bleibt */
+  border:none;             /* bleibt */
 
+  color: transparent;      /* Text innen leer */
+  -webkit-text-stroke: 1.4px #f3f08b; /* Outline */
+  text-shadow: 0 0 6px rgba(243,240,139,.35); /* leichtes Glow */
+
+  font-weight: 700;
 }
+
 
 /* optional: responsive sizing */
 @media (max-width: 700px) {
@@ -279,10 +328,10 @@ main {
   font-size: 32px;
   color: #fdff81;
   margin: 24px 0;
+}
 
-  .bigger {
-    font-size: 450px;
-  }
+#result-count .bigger {
+  font-size: 450px;
 }
 
 /* ===== ASTEROIDEN ===== */
@@ -311,4 +360,88 @@ main {
   transform: scale(1.5);
   box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
   z-index: 100;
+}
+/* ===== RESULTS LAYOUT (NEW) ===== */
+#result-count {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  padding: 80px 40px 140px; /* top space + bottom space (reset button) */
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* top block oben, bottom block unten */
+  align-items: center;
+
+  text-align: center;
+  color: #fdff81;
+}
+
+/* Top block */
+.result-top{
+  display:flex;
+  align-items:flex-end;
+  gap: clamp(10px, 3vw, 24px);
+}
+
+/* Number (smaller than before) */
+.result-num{
+  font-size: clamp(120px, 22vw, 260px);
+  line-height: .9;
+  -webkit-text-stroke: 1.5px #0c0e25;
+}
+
+/* ASTEROIDS next to number */
+/* ASTEROIDS next to number */
+.result-title{
+  font-size: clamp(28px, 6vw, 72px);
+  -webkit-text-stroke: 4px #fdff81;
+  text-shadow:
+          0 0 8px rgba(253,255,129,.6),
+          0 0 18px rgba(253,255,129,.45);
+}
+
+/* Middle text (under top block) */
+.result-middle {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.result-line{
+  font-size: clamp(18px, 4.5vw, 44px);
+  -webkit-text-stroke: 1px #0c0e25;
+}
+
+.result-caps {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Bottom block */
+.result-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  #result-count {
+    padding: 60px 18px 120px;
+  }
+
+  .result-num {
+    font-size: 160px;
+  }
+
+  .result-title {
+    font-size: 44px;
+  }
+
+  .result-line {
+    font-size: 28px;
+  }
 }

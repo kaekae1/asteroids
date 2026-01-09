@@ -7,9 +7,32 @@ const rightButton = document.querySelector('#right-btn')
 
 function checkGoButton() {
   const dateSelected = datepicker.value !== ''
-  const distanceSelected = distancepicker.value !== 'select'
+  const distanceSelected = distancepicker.value !== ''
   goButton.disabled = !(dateSelected && distanceSelected)
 }
+
+function updateArrowButtons() {
+  if (!distancepicker.value) {
+    leftButton.style.display = 'none'
+    rightButton.style.display = 'none'
+    return
+  }
+
+  if (distancepicker.value === 'all') {
+    leftButton.style.display = 'none'
+    rightButton.style.display = 'block'
+    rightButton.textContent = '<50 MIO. KM'
+  } else if (distancepicker.value === 'close') {
+    leftButton.style.display = 'block'
+    rightButton.style.display = 'none'
+    leftButton.textContent = 'ALL'
+  } else {
+    leftButton.style.display = 'none'
+    rightButton.style.display = 'none'
+  }
+}
+
+
 
 function loadSecondPage() {
   // Move the image to the top third of the current poage
@@ -25,9 +48,7 @@ function loadSecondPage() {
   if (firstSection) {
     firstSection.style.display = 'none'
   }
-
-  // hide the left button initially
-  leftButton.style.display = 'none'
+  updateArrowButtons()
 
   // show the second page results container
   document.getElementById('results').style.display = 'block'
@@ -59,10 +80,11 @@ function localizeDate(dateString) {
 }
 
 function localizeDistance(distance) {
-  if (distance == 'all') return 'nearly'
-  else if (distance == 'medium') return 'by less than 100 Mio. km'
-  else if (distance == 'close') return 'by less than 50 Mio. km'
+  if (distance === 'all') return 'nearly'
+  else if (distance === 'medium') return 'by less than 100 Mio. km'
+  return ''
 }
+
 
 async function getByDateAndDistance(date, distance) {
   console.log('get by date and distance', date, distance)
@@ -88,22 +110,78 @@ async function getByDateAndDistance(date, distance) {
       return
     }
 
-    resultCount.innerHTML = `
-        <span class="bigger">${data.length}</span>
-        ASTEROIDS <p> missed us on ${localizeDate(date)} </p> ${localizeDistance(
-      distance,
-    )}`
+    const dateLabel = localizeDate(date)
+
+    let text = ''
+    if (distance === 'all') {
+      text = `ASTEROIDS said hi on ${dateLabel}`
+    } else if (distance === 'medium') {
+      text = `ASTEROIDS missed us by less than 100 Mio. km on ${dateLabel}`
+    } else {
+      text = `ASTEROIDS on ${dateLabel}`
+    }
+
+
+    if (distance === 'all') {
+      resultCount.innerHTML = `
+    <div class="result-top">
+      <div class="result-num">${data.length}</div>
+      <div class="result-title">ASTEROIDS</div>
+    </div>
+
+    <div class="result-middle"></div>
+
+    <div class="result-bottom">
+      <div class="result-line">said hi on</div>
+      <div class="result-line result-caps">${dateLabel}</div>
+    </div>
+  `
+    } else if (distance === 'close') {
+      resultCount.innerHTML = `
+    <div>
+      <div class="result-top">
+        <div class="result-num">${data.length}</div>
+        <div class="result-title" data-text="ASTEROIDS">ASTEROIDS</div>
+      </div>
+
+      <div class="result-middle">
+        <div class="result-line">missed us by</div>
+        <div class="result-line result-caps">LESS THAN 50 MIO. KM</div>
+      </div>
+    </div>
+
+    <div class="result-bottom">
+      <div class="result-line">on</div>
+      <div class="result-line result-caps">${dateLabel}</div>
+    </div>
+  `
+    } else {
+      // fallback (sollte eigentlich nie passieren)
+      resultCount.textContent = `${data.length} asteroids on ${dateLabel}`
+    }
+
   } catch (error) {
     console.error('Fehler beim Laden der Daten:', error)
     resultCount.textContent = 'Fehler beim Laden der Daten'
   }
 }
 
+function getYesterdayISO() {
+  const today = new Date()
+  const yesterday = new Date(today)
+  yesterday.setDate(today.getDate() - 1)
+  return yesterday.toISOString().split('T')[0]
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
   const today = new Date().toISOString().split('T')[0]
+  const yesterday = getYesterdayISO()
   datepicker.max = today
-  datepicker.value = '2026-01-06'
-  distancepicker.value = 'all'
+  datepicker.value = yesterday
+  distancepicker.value = ''
+  checkGoButton()
+  updateArrowButtons()
 
   datepicker.addEventListener('change', function () {
     if (datepicker.value) {
@@ -117,34 +195,36 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('rst-btn').addEventListener('click', function () {
     showfFirstPage()
     resultCount.textContent = ''
+
+    datepicker.value = getYesterdayISO()
+    distancepicker.value = ''
+
+    checkGoButton()
+    updateArrowButtons()
   })
+
+
+
 
   distancepicker.addEventListener('change', function () {
     checkGoButton()
   })
 
   leftButton.addEventListener('click', function () {
-    rightButton.style.display = 'block'
-    if (distancepicker.value === 'close') {
-      distancepicker.value = 'medium'
-    } else if (distancepicker.value === 'medium') {
-      distancepicker.value = 'all'
-      leftButton.style.display = 'none'
-    }
-
+    distancepicker.value = 'all'
+    updateArrowButtons()
     getByDateAndDistance(datepicker.value, distancepicker.value)
   })
+
   rightButton.addEventListener('click', function () {
-    leftButton.style.display = 'block'
-    if (distancepicker.value === 'all') {
-      distancepicker.value = 'medium'
-    } else if (distancepicker.value === 'medium') {
-      distancepicker.value = 'close'
-      rightButton.style.display = 'none'
-    }
-
+    distancepicker.value = 'close'
+    updateArrowButtons()
     getByDateAndDistance(datepicker.value, distancepicker.value)
   })
+
+
+
+
 
   goButton.addEventListener('click', function () {
     const date = datepicker.value
