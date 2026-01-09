@@ -30,22 +30,22 @@ try {
     }
 
     // Distanz validieren
-    $validDistances = ['all', 'close'];
+    $validDistances = ['all', 'medium', 'close'];
     if (!in_array($distance, $validDistances, true)) {
         http_response_code(400);
-        echo json_encode(['error' => 'Ungueltiger Distanzwert. Erlaubt: all, close']);
+        echo json_encode(['error' => 'Ungueltiger Distanzwert. Erlaubt: all, medium, close']);
         exit;
     }
 
     // Basis-SQL
     $sql = "SELECT * FROM asteroids WHERE DATE(timestamp) = :date";
 
-
     // Distanzfilter
-    if ($distance === 'close') {
+    if ($distance === 'medium') {
+        $sql .= " AND distance_km < 100000000";
+    } elseif ($distance === 'close') {
         $sql .= " AND distance_km < 50000000";
     }
-
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['date' => $date]);
