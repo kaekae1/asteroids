@@ -27,15 +27,16 @@ header {
 
 header h1 {
   font-size: 150px;
-  margin: 0;
-  -webkit-text-stroke: 1px #fdff81;
+  margin: -50px;
+  margin-bottom: 12px;
+  -webkit-text-stroke: 1.5px #fdff81;
 }
 
 header p {
-  margin-top: 8px;
+  margin-top: 20px;
   font-size: 60pt;
   color: #0c0e25;
-  -webkit-text-stroke: 0.5px #fdff81;
+  -webkit-text-stroke: 1.5px #fdff81;
 }
 /* ===== EARTH IMAGE ===== */
 .earth-overlay {
@@ -134,7 +135,7 @@ main {
   text-align: center;
   font-size: 32px;
   -webkit-text-stroke: 0.5px #0c0e25;
-  margin: 24px 0;
+  margin: 70px 0;
   font-weight: bold;
 }
 
@@ -280,7 +281,7 @@ main {
   margin: 24px 0;
 
   .bigger {
-    font-size: 250px;
+    font-size: 600px;
   }
 }
 
